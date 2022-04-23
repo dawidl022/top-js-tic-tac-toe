@@ -1,3 +1,27 @@
+html, body {
+  margin: 0;
+}
+
 body {
-  background-color: red;
+  background-color: #eee;
+  font-family: sans-serif;
+}
+
+.board {
+  background-color: #333;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2vmin;
+  height: 100vmin;
+  width: 100vmin;
+  margin: 0 auto;
+}
+
+.board .square {
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25vmin;
 }
