@@ -1,14 +1,28 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #ccc;
+    --background: #28292a;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground: #222;
+    --background: #eee;
+  }
+}
+
 html, body {
   margin: 0;
 }
 
 body {
-  background-color: #eee;
+  background-color: var(--background);
   font-family: sans-serif;
 }
 
 .board {
-  background-color: #333;
+  background-color: var(--foreground);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -19,7 +33,7 @@ body {
 }
 
 .board .square {
-  background-color: #eee;
+  background-color: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
