@@ -2,6 +2,8 @@
   :root {
     --foreground: #ccc;
     --background: #28292a;
+    --blue: #3e7dec;
+    --red: #ec3e3e;
   }
 }
 
@@ -9,7 +11,13 @@
   :root {
     --foreground: #222;
     --background: #eee;
+    --blue: #156bff;
+    --red: #ff1515;
   }
+}
+
+:root {
+  color: var(--foreground);
 }
 
 html, body {
@@ -32,10 +40,18 @@ body {
   margin: 0 auto;
 }
 
-.board .square {
+.board > * {
   background-color: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 25vmin;
+}
+
+.player1 {
+  color: var(--red);
+}
+
+.player2 {
+  color: var(--blue);
 }

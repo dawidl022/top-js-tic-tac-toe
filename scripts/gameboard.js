@@ -1,4 +1,4 @@
-const gameBoard = (() => {
+const gameBoard = (boardElement, squareClasses) => (() => {
   const NUMBER_OF_SQUARES = 9;
   const board = new Array(NUMBER_OF_SQUARES);
 
@@ -7,7 +7,15 @@ const gameBoard = (() => {
   }
 
   function _render() {
+    for (let i = 0; i < NUMBER_OF_SQUARES; i++) {
+      if (board[i] !== null) {
+        const squareValue = board[i];
+        const squareElement = boardElement.children[i];
 
+        squareElement.textContent = squareValue;
+        squareElement.className = squareClasses[squareValue];
+      }
+    }
   }
 
   function _getRows() {
@@ -38,8 +46,14 @@ const gameBoard = (() => {
   }
 
   function setSquare(index, char) {
+    if (!squareClasses.hasOwnProperty(char)) {
+      throw new TypeError('Invalid square value');
+    }
+
     if (index >= 0 && index < NUMBER_OF_SQUARES) {
       board[index] = char;
+    } else {
+      throw new TypeError('Invalid square index')
     }
     _render();
   }
