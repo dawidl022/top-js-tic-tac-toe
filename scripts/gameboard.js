@@ -1,4 +1,4 @@
-const gameBoard = (boardElement, squareClasses) => (() => {
+const gameBoard = (boardElement, squareClasses) => {
   const NUMBER_OF_SQUARES = 9;
   const board = new Array(NUMBER_OF_SQUARES);
 
@@ -8,12 +8,17 @@ const gameBoard = (boardElement, squareClasses) => (() => {
 
   function _render() {
     for (let i = 0; i < NUMBER_OF_SQUARES; i++) {
-      if (board[i] !== null) {
-        const squareValue = board[i];
-        const squareElement = boardElement.children[i];
+      const squareValue = board[i];
+      const squareElement = boardElement.children[i];
 
+      if (squareValue === null) {
+        squareElement.textContent = '';
+        squareElement.className = '';
+        squareElement.setAttribute('disabled', false);
+      } else {
         squareElement.textContent = squareValue;
         squareElement.className = squareClasses[squareValue];
+        squareElement.setAttribute('disabled', true);
       }
     }
   }
@@ -87,4 +92,4 @@ const gameBoard = (boardElement, squareClasses) => (() => {
 
   _init();
   return { setSquare, clear, isFull, has3Consecutive };
-})();
+};
