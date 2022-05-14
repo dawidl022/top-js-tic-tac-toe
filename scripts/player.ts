@@ -1,7 +1,7 @@
 import { Piece } from './gameboard';
 
 export interface Player {
-  getPiece(): string;
+  getPiece(): Piece;
 }
 
 const player = (piece: Piece) => {

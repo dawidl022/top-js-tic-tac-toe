@@ -1,5 +1,7 @@
 export type Piece = 'X' | 'O';
 
+type Cell = Piece | null;
+
 export interface GameBoard {
   setSquare(index: number, piece: Piece): void;
   clear(): void;
@@ -17,7 +19,7 @@ const gameBoard = (
   squareClasses: SquareClasses
 ): GameBoard => {
   const NUMBER_OF_SQUARES = 9;
-  const board = new Array<Piece | null>(NUMBER_OF_SQUARES);
+  const board = new Array<Cell>(NUMBER_OF_SQUARES);
 
   function _init() {
     clear();
@@ -31,16 +33,16 @@ const gameBoard = (
       if (squareValue === null) {
         squareElement.textContent = '';
         squareElement.className = '';
-        squareElement.setAttribute('disabled', 'disabled');
+        squareElement.removeAttribute('disabled');
       } else {
         squareElement.textContent = squareValue;
         squareElement.className = squareClasses[squareValue];
-        squareElement.removeAttribute('disabled');
+        squareElement.setAttribute('disabled', 'disabled');
       }
     }
   }
 
-  function _getRows() {
+  function _getRows(): Cell[][] {
     const rows = [];
 
     for (let i = 0; i < NUMBER_OF_SQUARES; i += 3) {
@@ -50,7 +52,7 @@ const gameBoard = (
     return rows;
   }
 
-  function _getColumns() {
+  function _getColumns(): Cell[][] {
     const columns = [];
 
     for (let i = 0; i < NUMBER_OF_SQUARES / 3; i++) {

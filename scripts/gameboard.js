@@ -11,12 +11,12 @@ const gameBoard = (boardElement, squareClasses) => {
             if (squareValue === null) {
                 squareElement.textContent = '';
                 squareElement.className = '';
-                squareElement.setAttribute('disabled', 'disabled');
+                squareElement.removeAttribute('disabled');
             }
             else {
                 squareElement.textContent = squareValue;
                 squareElement.className = squareClasses[squareValue];
-                squareElement.removeAttribute('disabled');
+                squareElement.setAttribute('disabled', 'disabled');
             }
         }
     }
