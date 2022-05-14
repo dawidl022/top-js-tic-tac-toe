@@ -1,6 +1,7 @@
-const player = piece => {
-  function getPiece() {
-    return piece;
-  }
-  return { getPiece };
+const player = (piece) => {
+    function getPiece() {
+        return piece;
+    }
+    return { getPiece };
 };
+
