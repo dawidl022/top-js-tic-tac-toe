@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Tic-Tac-Toe</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/github-icon/css/github.css">
+
 
     <link rel="icon" href="#">
     <link rel="stylesheet" href="styles/reset.css">
@@ -16,7 +23,27 @@
   </head>
   <body>
     <main>
-      <div class="game-screen">
+      <div class="menu-screen">
+        <h1 class="title">
+          <span class="word1">Tic</span>-<span class="word2">Tac</span>-<span class="word3">Toe</span>
+        </h1>
+
+        <div class="menu-buttons">
+          <button type="button">1 Player</button>
+          <a href="#game-screen"><button type="button">2 Players</button></a>
+        </div>
+
+        <footer class="footer">
+          Game made with ❤️ by
+          <a href="https://github.com/dawidl022" target="_blank" rel="noopener"
+            class="footer-link">
+            Dawid Lachowicz
+            <i class="icon-github-circled icon"></i>
+          </a>
+        </footer>
+      </div>
+
+      <div class="game-screen" id="game-screen">
         <div class="player-stats player-stats--1">
           Player 1:
           <span id="player1-score" class="score">0</span>

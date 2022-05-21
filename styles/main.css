@@ -2,8 +2,10 @@
   :root {
     --foreground: #ccc;
     --background: #28292a;
+    --footer-background: #333;
     --blue: #3e7dec;
     --red: #ec3e3e;
+    --green: #52ec3e;
   }
 }
 
@@ -11,13 +13,16 @@
   :root {
     --foreground: #222;
     --background: #eee;
+    --footer-background: #ddd;
     --blue: #156bff;
     --red: #ff1515;
+    --green: #15ff15;
   }
 }
 
 :root {
   color: var(--foreground);
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -27,6 +32,74 @@ html, body {
 body {
   background-color: var(--background);
   font-family: sans-serif;
+}
+
+.menu-screen {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.footer {
+  margin-top: auto;
+  box-sizing: border-box;
+  padding: 2rem 1rem;
+  width: 100%;
+  text-align: center;
+  background-color: var(--footer-background);
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .1rem;
+}
+
+.footer-link i {
+  font-size: 1.6em;
+}
+
+.title {
+  font-family: 'Abril Fatface', sans-serif;
+  font-size: clamp(2rem, 10vw, 15rem);
+  text-align: center;
+}
+
+.title .word1 {
+  color: var(--red);
+}
+
+.title .word2 {
+  color: var(--green);
+}
+
+.title .word3 {
+  color: var(--blue);
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  gap: 10rem;
+  margin-bottom: 6rem;
+}
+
+.menu-buttons button {
+  padding: 2rem;
+  color: #eee;
+  background-color: var(--blue);
+  border: 0.5rem solid var(--foreground);
+  border-radius: 1rem;
+  transition: filter .2s ease-out;
+}
+
+.menu-buttons button:hover, .menu-buttons button:focus-visible {
+  filter: brightness(1.2);
 }
 
 .game-screen {
@@ -64,7 +137,7 @@ body {
 
 .player-stats {
   margin: 1rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .player-stats--2 {
