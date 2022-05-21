@@ -4,4 +4,3 @@ const player = (piece) => {
     }
     return { getPiece };
 };
-

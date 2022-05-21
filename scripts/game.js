@@ -46,4 +46,3 @@ const game = (boardElement, board, player1, player2) => {
     }
     return { start };
 };
-

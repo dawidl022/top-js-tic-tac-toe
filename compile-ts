@@ -1,0 +1,20 @@
+#!/bin/env bash
+
+compile() {
+    if [[ $1 = false ]]; then
+        echo "Changes detected..."
+    fi
+    tsc scripts/*.ts --strict --target es6 && \
+    sed -Ei -e "/export \{\}/d" scripts/*.js && \
+    echo "Compiled ts -> js [$(date)]"
+
+    first_time=false
+}
+
+first_time=true
+
+while true
+do
+    inotifywait scripts/*.ts -e modify &> /dev/null | compile $first_time
+    first_time=false
+done

@@ -76,4 +76,3 @@ const gameBoard = (boardElement, squareClasses) => {
     _init();
     return { setSquare, clear, isFull, has3Consecutive };
 };
-
