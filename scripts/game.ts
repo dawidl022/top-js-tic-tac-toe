@@ -35,6 +35,7 @@ const game = (
     const { state, winner } = _gameState();
     if (state != GameState.ONGOING) {
       alert(`Game over! ${winner?.getPiece() || ''}${state}`);
+      winner?.incrementScore();
       board.clear();
     }
   }
@@ -57,14 +58,6 @@ const game = (
     }
 
     return { state: GameState.ONGOING, winner: null };
-  }
-
-  function _gameOver(): boolean {
-    return (
-      board.has3Consecutive(player1.getPiece()) ||
-      board.has3Consecutive(player2.getPiece()) ||
-      board.isFull()
-    );
   }
 
   return { start };

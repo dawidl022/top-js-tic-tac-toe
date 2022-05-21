@@ -21,6 +21,7 @@ const game = (boardElement, board, player1, player2) => {
         const { state, winner } = _gameState();
         if (state != GameState.ONGOING) {
             alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getPiece()) || ''}${state}`);
+            winner === null || winner === void 0 ? void 0 : winner.incrementScore();
             board.clear();
         }
     }
@@ -38,11 +39,6 @@ const game = (boardElement, board, player1, player2) => {
             return { state: GameState.DRAW, winner: null };
         }
         return { state: GameState.ONGOING, winner: null };
-    }
-    function _gameOver() {
-        return (board.has3Consecutive(player1.getPiece()) ||
-            board.has3Consecutive(player2.getPiece()) ||
-            board.isFull());
     }
     return { start };
 };

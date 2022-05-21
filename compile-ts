@@ -5,8 +5,8 @@ compile() {
         echo "Changes detected..."
     fi
     tsc scripts/*.ts --strict --target es6 && \
-    sed -Ei -e "/export \{\}/d" scripts/*.js && \
     echo "Compiled ts -> js [$(date)]"
+    sed -Ei -e "/export \{\}/d" scripts/*.js &&
 
     first_time=false
 }

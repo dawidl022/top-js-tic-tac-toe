@@ -29,6 +29,11 @@ body {
   font-family: sans-serif;
 }
 
+.game-screen {
+  display: grid;
+  grid-template-areas: "left board right";
+}
+
 .board {
   background-color: var(--foreground);
   display: grid;
@@ -38,6 +43,7 @@ body {
   height: 100vmin;
   width: 100vmin;
   margin: 0 auto;
+  grid-area: board;
 }
 
 .board > * {
@@ -54,4 +60,17 @@ body {
 
 .player2 {
   color: var(--blue);
+}
+
+.player-stats {
+  margin: 1rem;
+  font-size: 2.5rem;
+}
+
+.player-stats--2 {
+  text-align: right;
+}
+
+.player-stats .score {
+  font-weight: bold;
 }
