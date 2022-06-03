@@ -16,3 +16,15 @@ a {
   font: inherit;
   color: inherit;
 }
+
+fieldset {
+  border: none;
+}
+
+legend {
+  all: unset;
+}
+
+input {
+  all: unset;
+}

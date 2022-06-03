@@ -1,4 +1,5 @@
-const player = (piece, scoreElement) => {
+const player = (piece, name, scoreElement, nameElement) => {
+    nameElement.textContent = name;
     function getPiece() {
         return piece;
     }

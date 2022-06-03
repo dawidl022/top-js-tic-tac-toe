@@ -89,7 +89,7 @@ body {
   margin-bottom: 6rem;
 }
 
-.menu-buttons button {
+.menu-buttons button, .start-button {
   padding: 2rem;
   color: #eee;
   background-color: var(--blue);
@@ -98,7 +98,8 @@ body {
   transition: filter .2s ease-out;
 }
 
-.menu-buttons button:hover, .menu-buttons button:focus-visible {
+.menu-buttons button:hover, .menu-buttons button:focus-visible,
+.start-button:hover, .start-button:focus-visible {
   filter: brightness(1.2);
 }
 
@@ -146,4 +147,71 @@ body {
 
 .player-stats .score {
   font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .2);
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  padding: 2rem;
+  background-color: var(--background);
+  border: 1px solid var(--foreground);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-top-bar {
+  text-align: right;
+}
+
+.modal-form legend {
+  font-size: 2rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-form .fields {
+  padding: 2rem 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.modal-form .field {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.modal-form .field input {
+  border: 3px solid var(--foreground);
+  border-radius: 4px;
+  padding: .3rem .5rem;
+}
+
+.modal-form .field input:focus {
+  box-shadow: 0 0 2px 3px var(--blue);
+}
+
+.start-button {
+  padding: 1rem;
+  border-width: 4px;
+}
+
+.hidden {
+  display: none;
 }

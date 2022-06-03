@@ -5,7 +5,14 @@ export interface Player {
   incrementScore(): void;
 }
 
-const player = (piece: Piece, scoreElement: HTMLElement) => {
+const player = (
+  piece: Piece,
+  name: string,
+  scoreElement: HTMLElement,
+  nameElement: HTMLElement
+) => {
+  nameElement.textContent = name;
+
   function getPiece() {
     return piece;
   }

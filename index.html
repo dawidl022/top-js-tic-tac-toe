@@ -22,6 +22,47 @@
     <script src="scripts/main.js" defer></script>
   </head>
   <body>
+    <div class="modal hidden" id="modal-2-players" role="dialog">
+      <div class="modal-content">
+        <div class="modal-top-bar"><button type="button" aria-label="close" class="close">X</button></div>
+        <form action="#" class="modal-form" id="player-2-game-form">
+          <fieldset class="fields">
+            <legend><span>Enter your names</span></legend>
+
+            <div class="field">
+              <label for="player1">Player 1</label>
+              <input type="text" name="player1" id="player1-name-field" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="player2">Player 2</label>
+              <input type="text" name="player2" id="player2-name-field" autocomplete="name">
+            </div>
+
+          </fieldset>
+
+          <button type="submit" class="start-button">Start game</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="modal-1-player" role="dialog">
+      <div class="modal-content">
+        <div class="modal-top-bar"><button type="button" aria-label="close" class="close">X</button></div>
+        <form action="#" class="modal-form" id="player-1-game-form">
+          <fieldset class="fields">
+            <legend><span>Enter your name</span></legend>
+
+            <div class="field">
+              <label for="player1">Name</label>
+              <input type="text" name="player1" id="player1-name-field" autocomplete="name">
+            </div>
+          </fieldset>
+
+          <button type="submit" class="start-button">Start game</button>
+        </form>
+      </div>
+    </div>
+
     <main>
       <div class="menu-screen">
         <h1 class="title">
@@ -30,7 +71,7 @@
 
         <div class="menu-buttons">
           <button type="button">1 Player</button>
-          <a href="#game-screen"><button type="button">2 Players</button></a>
+          <button type="button" id="button-2-players">2 Players</button>
         </div>
 
         <footer class="footer">
@@ -43,13 +84,13 @@
         </footer>
       </div>
 
-      <div class="game-screen" id="game-screen">
+      <div class="game-screen hidden" id="game-screen">
         <div class="player-stats player-stats--1">
-          Player 1:
+          <span class="name" id="player1-name">Player 1</span>:
           <span id="player1-score" class="score">0</span>
         </div>
         <div class="player-stats player-stats--2">
-          Player 2:
+          <span class="name" id="player2-name">Player 2</span>:
           <span id="player2-score" class="score">0</span>
         </div>
         <div class="board">
