@@ -4,9 +4,9 @@ compile() {
     if [[ $1 = false ]]; then
         echo "Changes detected..."
     fi
-    tsc scripts/*.ts --strict --target es6 && \
+    tsc scripts/**/*.ts scripts/*.ts --strict --target es6 && \
     echo "Compiled ts -> js [$(date)]"
-    sed -Ei -e "/export \{\}/d" scripts/*.js &&
+    sed -Ei -e "/export \{\}/d" scripts/**/*.js scripts/*.js &&
 
     first_time=false
 }
@@ -15,6 +15,6 @@ first_time=true
 
 while true
 do
-    inotifywait scripts/*.ts -e modify &> /dev/null | compile $first_time
+    inotifywait scripts/**/*.ts scripts/*.ts -e modify &> /dev/null | compile $first_time
     first_time=false
 done

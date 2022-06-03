@@ -20,6 +20,7 @@
     <script src="scripts/player.js" defer></script>
     <script src="scripts/game.js" defer></script>
     <script src="scripts/controllers.js" defer></script>
+    <script src="scripts/components/PlayerToMove.js" defer></script>
     <script src="scripts/main.js" defer></script>
   </head>
   <body>
@@ -87,12 +88,26 @@
 
       <div class="game-screen hidden" id="game-screen">
         <div class="player-stats player-stats--1">
-          <span class="name" id="player1-name">Player 1</span>:
-          <span id="player1-score" class="score">0</span>
+          <div>
+            <span class="name" id="player1-name">Player 1</span>:
+            <span id="player1-score" class="score">0</span>
+          </div>
+          <div class="player-to-move">
+            <div>Player to move:</div>
+            <div>
+              <span class="player-to-move__name"></span>
+              (<span class="player-to-move__piece"></span>)
+            </div>
+          </div>
         </div>
         <div class="player-stats player-stats--2">
-          <span class="name" id="player2-name">Player 2</span>:
-          <span id="player2-score" class="score">0</span>
+          <div>
+            <span class="name" id="player2-name">Player 2</span>:
+            <span id="player2-score" class="score">0</span>
+          </div>
+          <div class="menu-buttons">
+            <button type="button">Main Menu</button>
+          </div>
         </div>
         <div class="board">
           <button type="button"></button>

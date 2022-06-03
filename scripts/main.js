@@ -63,14 +63,22 @@
     });
   });
 
+  const pieceClasses = { X: 'player1', O: 'player2' };
+
+  const playerToMoveComponent = playerToMove(
+    document.querySelector('.player-to-move'),
+    pieceClasses
+  );
+
   function start1PlayerGame(name) {
     showGameScreen();
 
     const bot = botMinMax('O', 'X');
     game(
-      gameBoard(boardElement, { X: 'player1', O: 'player2' }),
+      gameBoard(boardElement, pieceClasses),
       player(human(boardElement), 'X', name || 'Player', player1Score, player1),
-      player(bot, 'O', 'Bot', player2Score, player2)
+      player(bot, 'O', 'Bot', player2Score, player2),
+      playerToMoveComponent
     ).start();
   }
 
@@ -81,9 +89,10 @@
 
     showGameScreen();
     game(
-      gameBoard(boardElement, { X: 'player1', O: 'player2' }),
+      gameBoard(boardElement, pieceClasses),
       player(controller, 'X', player1Name, player1Score, player1),
-      player(controller, 'O', player2Name, player2Score, player2)
+      player(controller, 'O', player2Name, player2Score, player2),
+      playerToMoveComponent
     ).start();
   }
 })();

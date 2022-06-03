@@ -13,10 +13,11 @@ var GameState;
     GameState["DRAW"] = "It's a draw!";
     GameState["WIN"] = " wins!";
 })(GameState || (GameState = {}));
-const game = (board, player1, player2) => {
+const game = (board, player1, player2, playerToMoveComponent) => {
     let currentPlayer = player1;
     function start() {
         return __awaiter(this, void 0, void 0, function* () {
+            playerToMoveComponent.update(currentPlayer);
             while (true) {
                 yield _takeTurn();
                 yield _checkGameStatus();
@@ -36,7 +37,7 @@ const game = (board, player1, player2) => {
             if (state != GameState.ONGOING) {
                 // wait for board to rerender
                 yield new Promise(resolver => setTimeout(resolver, 50));
-                alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getPiece()) || ''}${state}`);
+                alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getName()) || ''}${state}`);
                 winner === null || winner === void 0 ? void 0 : winner.incrementScore();
                 board.clear();
                 // TODO toggle which player starts next round
@@ -45,7 +46,7 @@ const game = (board, player1, player2) => {
     }
     function _toggleCurrentPlayer() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
-        // TODO display whose move it currently is
+        playerToMoveComponent.update(currentPlayer);
     }
     function _gameState() {
         const players = [player1, player2];

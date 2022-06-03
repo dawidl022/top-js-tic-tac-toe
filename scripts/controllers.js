@@ -47,6 +47,7 @@ const botRandom = () => {
 };
 const botMinMax = (piece, opponentPiece) => {
     function _minMax(boardState, strategy) {
+        // errors present due to boardChecks being included via HTML file
         if (boardChecks.has3Consecutive(boardState, piece)) {
             return 1;
         }

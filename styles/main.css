@@ -139,6 +139,9 @@ body {
 .player-stats {
   margin: 1rem;
   font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .player-stats--2 {
@@ -147,6 +150,10 @@ body {
 
 .player-stats .score {
   font-weight: bold;
+}
+
+.player-to-move {
+  padding-bottom: 6rem;
 }
 
 .modal {

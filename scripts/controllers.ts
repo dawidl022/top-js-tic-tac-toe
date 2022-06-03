@@ -57,6 +57,7 @@ interface MoveEval {
 
 const botMinMax = (piece: Piece, opponentPiece: Piece): PlayerController => {
   function _minMax(boardState: BoardState, strategy: Strategy): Score {
+    // TypeScript errors present due to boardChecks being included via HTML file
     if (boardChecks.has3Consecutive(boardState, piece)) {
       return 1;
     }

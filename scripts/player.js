@@ -10,5 +10,8 @@ const player = (controller, piece, name, scoreElement, nameElement) => {
     function makeMove(boardState) {
         return controller.makeMove(boardState);
     }
-    return { getPiece, incrementScore, makeMove };
+    function getName() {
+        return name;
+    }
+    return { getPiece, getName, incrementScore, makeMove };
 };

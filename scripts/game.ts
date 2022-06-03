@@ -1,5 +1,6 @@
 import { Player } from './player';
 import { GameBoard } from './gameboard';
+import { PlayerToMoveComponent } from './components/PlayerToMove';
 
 enum GameState {
   ONGOING,
@@ -7,10 +8,17 @@ enum GameState {
   WIN = ' wins!',
 }
 
-const game = (board: GameBoard, player1: Player, player2: Player) => {
+const game = (
+  board: GameBoard,
+  player1: Player,
+  player2: Player,
+  playerToMoveComponent: PlayerToMoveComponent
+) => {
   let currentPlayer = player1;
 
   async function start() {
+    playerToMoveComponent.update(currentPlayer);
+
     while (true) {
       await _takeTurn();
       await _checkGameStatus();
@@ -28,7 +36,7 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
     if (state != GameState.ONGOING) {
       // wait for board to rerender
       await new Promise(resolver => setTimeout(resolver, 50));
-      alert(`Game over! ${winner?.getPiece() || ''}${state}`);
+      alert(`Game over! ${winner?.getName() || ''}${state}`);
       winner?.incrementScore();
       board.clear();
       // TODO toggle which player starts next round
@@ -37,7 +45,7 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
 
   function _toggleCurrentPlayer() {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    // TODO display whose move it currently is
+    playerToMoveComponent.update(currentPlayer);
   }
 
   function _gameState() {
