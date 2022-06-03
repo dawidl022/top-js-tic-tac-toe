@@ -82,6 +82,9 @@ const botMinMax = (piece: Piece, opponentPiece: Piece): PlayerController => {
   }
 
   async function makeMove(boardState: BoardState) {
+    // allow board to rerender before entering compute intensive minmax algorithm
+    await new Promise(resolve => setTimeout(resolve, 10));
+
     const freeCells = controllerUtil.getFreeCells(boardState);
 
     if (freeCells.length === 9) {

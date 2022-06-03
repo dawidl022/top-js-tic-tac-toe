@@ -39,7 +39,6 @@ body {
   min-height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .footer {
@@ -79,21 +78,27 @@ body {
   color: var(--blue);
 }
 
-.menu-buttons {
+.menu-buttons-wrapper {
   display: flex;
   justify-content: center;
+}
+
+.menu-buttons {
+  display: flex;
+  max-width: 40rem;
+  width: 100%;
+  justify-content: center;
   gap: 1rem;
-  font-size: 2.5rem;
   font-weight: bold;
-  gap: 10rem;
+  justify-content: space-around;
   margin-bottom: 6rem;
 }
 
 .menu-buttons button, .start-button {
-  padding: 2rem;
+  padding: 1.2em 1.7em;
   color: #eee;
   background-color: var(--blue);
-  border: 0.5rem solid var(--foreground);
+  border: 0.25em solid var(--foreground);
   border-radius: 1rem;
   transition: filter .2s ease-out;
 }
@@ -138,10 +143,14 @@ body {
 
 .player-stats {
   margin: 1rem;
-  font-size: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1rem;
+}
+
+.player-stats .menu-buttons {
+  justify-content: right;
 }
 
 .player-stats--2 {
@@ -186,7 +195,7 @@ body {
 }
 
 .modal-form legend {
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: block;
   width: 100%;
   text-align: center;
@@ -210,6 +219,10 @@ body {
   padding: .3rem .5rem;
 }
 
+.modal-form .field label {
+  white-space: nowrap;
+}
+
 .modal-form .field input:focus {
   box-shadow: 0 0 2px 3px var(--blue);
 }
@@ -221,4 +234,30 @@ body {
 
 .hidden {
   display: none;
+}
+
+
+@media (orientation: portrait), (max-aspect-ratio: 5/3) {
+  .game-screen {
+    grid-template-areas: "board board"
+    "left right";
+    gap: 1rem 0;
+  }
+}
+
+
+@media (min-width: 1300px) {
+  .menu-buttons {
+    font-size: 1.5rem;
+  }
+
+  .player-stats {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .player-stats {
+    font-size: 2.5rem;
+  }
 }

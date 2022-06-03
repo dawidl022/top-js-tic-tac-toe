@@ -67,6 +67,8 @@ const botMinMax = (piece, opponentPiece) => {
     }
     function makeMove(boardState) {
         return __awaiter(this, void 0, void 0, function* () {
+            // allow board to rerender before entering compute intensive minmax algorithm
+            yield new Promise(resolve => setTimeout(resolve, 10));
             const freeCells = controllerUtil.getFreeCells(boardState);
             if (freeCells.length === 9) {
                 // first move is always a corner
