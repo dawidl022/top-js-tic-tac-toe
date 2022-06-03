@@ -65,10 +65,12 @@
 
   function start1PlayerGame(name) {
     showGameScreen();
+
+    const bot = botMinMax('O', 'X');
     game(
       gameBoard(boardElement, { X: 'player1', O: 'player2' }),
       player(human(boardElement), 'X', name || 'Player', player1Score, player1),
-      player(botRandom(), 'O', 'Bot', player2Score, player2)
+      player(bot, 'O', 'Bot', player2Score, player2)
     ).start();
   }
 

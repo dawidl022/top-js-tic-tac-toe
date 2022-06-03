@@ -35,6 +35,7 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
 
   function _toggleCurrentPlayer() {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
+    // TODO display whose move it currently is
   }
 
   function _gameState() {
