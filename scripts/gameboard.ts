@@ -7,6 +7,7 @@ export interface GameBoard {
   clear(): void;
   isFull(): boolean;
   has3Consecutive(piece: Piece): boolean;
+  getBoardState(): BoardState;
 }
 
 export interface SquareClasses {
@@ -14,12 +15,14 @@ export interface SquareClasses {
   O: string;
 }
 
+export type BoardState = Cell[];
+
 const gameBoard = (
   boardElement: HTMLElement,
   squareClasses: SquareClasses
 ): GameBoard => {
   const NUMBER_OF_SQUARES = 9;
-  const board = new Array<Cell>(NUMBER_OF_SQUARES);
+  const board: BoardState = new Array<Cell>(NUMBER_OF_SQUARES);
 
   function _init() {
     clear();
@@ -109,6 +112,10 @@ const gameBoard = (
     return false;
   }
 
+  function getBoardState(): BoardState {
+    return board.slice();
+  }
+
   _init();
-  return { setSquare, clear, isFull, has3Consecutive };
+  return { setSquare, clear, isFull, has3Consecutive, getBoardState };
 };

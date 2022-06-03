@@ -73,6 +73,9 @@ const gameBoard = (boardElement, squareClasses) => {
         }
         return false;
     }
+    function getBoardState() {
+        return board.slice();
+    }
     _init();
-    return { setSquare, clear, isFull, has3Consecutive };
+    return { setSquare, clear, isFull, has3Consecutive, getBoardState };
 };

@@ -3,7 +3,7 @@
   const player1Score = document.querySelector('#player1-score');
   const player2Score = document.querySelector('#player2-score');
   if (boardElement == null || player1Score == null || player2Score == null) {
-    console.error("Game HTML elements not found.")
+    console.error('Game HTML elements not found.');
     return;
   }
 
@@ -24,6 +24,17 @@
     hide(menuScreen);
     show(gameScreen);
   }
+
+  const modal1Player = document.querySelector('#modal-1-player');
+  const button1Player = document.querySelector('#button-1-player');
+  const form1Player = document.querySelector('#player-1-game-form');
+
+  form1Player.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = e.target.querySelector('#name-field');
+    hide(modal1Player);
+    start1PlayerGame(name);
+  });
 
   const modal2Player = document.querySelector('#modal-2-players');
   const button2Player = document.querySelector('#button-2-players');
@@ -48,18 +59,27 @@
       }
       hide(modal);
     });
-  })
+  });
+
+  function start1PlayerGame(name) {
+    showGameScreen();
+    game(
+      gameBoard(boardElement, { X: 'player1', O: 'player2' }),
+      player(human(boardElement), 'X', name || 'Player', player1Score, player1),
+      player(bot(), 'O', 'Bot', player2Score, player2)
+    ).start();
+  }
 
   function start2PlayerGame(player1Name, player2Name) {
     player1Name ||= 'Player 1';
     player2Name ||= 'Player 2';
+    const controller = human(boardElement);
 
     showGameScreen();
     game(
-      boardElement,
       gameBoard(boardElement, { X: 'player1', O: 'player2' }),
-      player('X', player1Name, player1Score, player1),
-      player('O', player2Name, player2Score, player2)
+      player(controller, 'X', player1Name, player1Score, player1),
+      player(controller, 'O', player2Name, player2Score, player2)
     ).start();
   }
 })();

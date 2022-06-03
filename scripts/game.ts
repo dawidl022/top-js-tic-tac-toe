@@ -7,28 +7,20 @@ enum GameState {
   WIN = ' wins!',
 }
 
-const game = (
-  boardElement: HTMLElement,
-  board: GameBoard,
-  player1: Player,
-  player2: Player
-) => {
+const game = (board: GameBoard, player1: Player, player2: Player) => {
   let currentPlayer = player1;
 
-  function start() {
-    const cellButtons = boardElement.querySelectorAll('button');
-
-    cellButtons.forEach((btn, index) =>
-      btn.addEventListener('click', () => {
-        _takeTurn(index);
-        _checkGameStatus();
-        _toggleCurrentPlayer();
-      })
-    );
+  async function start() {
+    while (true) {
+      await _takeTurn();
+      _checkGameStatus();
+      _toggleCurrentPlayer();
+    }
   }
 
-  function _takeTurn(index: number) {
-    board.setSquare(index, currentPlayer.getPiece());
+  async function _takeTurn() {
+    const move = await currentPlayer.makeMove(board.getBoardState());
+    board.setSquare(move, currentPlayer.getPiece());
   }
 
   function _checkGameStatus() {
