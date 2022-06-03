@@ -29,6 +29,7 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
       alert(`Game over! ${winner?.getPiece() || ''}${state}`);
       winner?.incrementScore();
       board.clear();
+      // TODO toggle which player starts next round
     }
   }
 

@@ -36,6 +36,7 @@ const game = (board, player1, player2) => {
             alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getPiece()) || ''}${state}`);
             winner === null || winner === void 0 ? void 0 : winner.incrementScore();
             board.clear();
+            // TODO toggle which player starts next round
         }
     }
     function _toggleCurrentPlayer() {

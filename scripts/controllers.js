@@ -21,3 +21,21 @@ const human = (boardElement) => {
     }
     return { makeMove };
 };
+const botRandom = () => {
+    function _randInt(start, end) {
+        const diff = end - start + 1;
+        return Math.floor(Math.random() * diff) + start;
+    }
+    function makeMove(boardState) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const freeCells = boardState.reduce((cells, currentCell, index) => {
+                if (currentCell === null) {
+                    cells.push(index);
+                }
+                return cells;
+            }, []);
+            return freeCells[_randInt(0, freeCells.length - 1)];
+        });
+    }
+    return { makeMove };
+};

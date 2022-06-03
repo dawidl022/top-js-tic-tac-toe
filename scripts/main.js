@@ -31,10 +31,12 @@
 
   form1Player.addEventListener('submit', e => {
     e.preventDefault();
-    const name = e.target.querySelector('#name-field');
+    const name = e.target.querySelector('#name-field').value;
     hide(modal1Player);
     start1PlayerGame(name);
   });
+
+  button1Player.addEventListener('click', () => show(modal1Player));
 
   const modal2Player = document.querySelector('#modal-2-players');
   const button2Player = document.querySelector('#button-2-players');
@@ -66,7 +68,7 @@
     game(
       gameBoard(boardElement, { X: 'player1', O: 'player2' }),
       player(human(boardElement), 'X', name || 'Player', player1Score, player1),
-      player(bot(), 'O', 'Bot', player2Score, player2)
+      player(botRandom(), 'O', 'Bot', player2Score, player2)
     ).start();
   }
 
