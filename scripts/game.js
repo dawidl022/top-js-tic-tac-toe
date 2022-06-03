@@ -19,7 +19,7 @@ const game = (board, player1, player2) => {
         return __awaiter(this, void 0, void 0, function* () {
             while (true) {
                 yield _takeTurn();
-                _checkGameStatus();
+                yield _checkGameStatus();
                 _toggleCurrentPlayer();
             }
         });
@@ -31,13 +31,17 @@ const game = (board, player1, player2) => {
         });
     }
     function _checkGameStatus() {
-        const { state, winner } = _gameState();
-        if (state != GameState.ONGOING) {
-            alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getPiece()) || ''}${state}`);
-            winner === null || winner === void 0 ? void 0 : winner.incrementScore();
-            board.clear();
-            // TODO toggle which player starts next round
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            const { state, winner } = _gameState();
+            if (state != GameState.ONGOING) {
+                // wait for board to rerender
+                yield new Promise(resolver => setTimeout(resolver, 50));
+                alert(`Game over! ${(winner === null || winner === void 0 ? void 0 : winner.getPiece()) || ''}${state}`);
+                winner === null || winner === void 0 ? void 0 : winner.incrementScore();
+                board.clear();
+                // TODO toggle which player starts next round
+            }
+        });
     }
     function _toggleCurrentPlayer() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;

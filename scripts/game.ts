@@ -13,7 +13,7 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
   async function start() {
     while (true) {
       await _takeTurn();
-      _checkGameStatus();
+      await _checkGameStatus();
       _toggleCurrentPlayer();
     }
   }
@@ -23,9 +23,11 @@ const game = (board: GameBoard, player1: Player, player2: Player) => {
     board.setSquare(move, currentPlayer.getPiece());
   }
 
-  function _checkGameStatus() {
+  async function _checkGameStatus() {
     const { state, winner } = _gameState();
     if (state != GameState.ONGOING) {
+      // wait for board to rerender
+      await new Promise(resolver => setTimeout(resolver, 50));
       alert(`Game over! ${winner?.getPiece() || ''}${state}`);
       winner?.incrementScore();
       board.clear();
