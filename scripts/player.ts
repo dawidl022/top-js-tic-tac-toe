@@ -3,6 +3,7 @@ import { BoardState, Piece } from './gameboard';
 export interface Player {
   getPiece(): Piece;
   incrementScore(): void;
+  resetScore(): void;
   getName(): string;
   makeMove(boardState: BoardState): Promise<number>;
 }
@@ -30,6 +31,10 @@ const player = (
     ).toString();
   }
 
+  function resetScore() {
+    scoreElement.textContent = '0';
+  }
+
   function makeMove(boardState: BoardState) {
     return controller.makeMove(boardState);
   }
@@ -38,5 +43,5 @@ const player = (
     return name;
   }
 
-  return { getPiece, getName, incrementScore, makeMove };
+  return { getPiece, getName, incrementScore, resetScore, makeMove };
 };

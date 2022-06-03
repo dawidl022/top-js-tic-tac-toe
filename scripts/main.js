@@ -70,16 +70,19 @@
     pieceClasses
   );
 
+  let currentGame;
+
   function start1PlayerGame(name) {
     showGameScreen();
 
     const bot = botMinMax('O', 'X');
-    game(
+    currentGame = game(
       gameBoard(boardElement, pieceClasses),
       player(human(boardElement), 'X', name || 'Player', player1Score, player1),
       player(bot, 'O', 'Bot', player2Score, player2),
       playerToMoveComponent
-    ).start();
+    );
+    currentGame.start();
   }
 
   function start2PlayerGame(player1Name, player2Name) {
@@ -88,11 +91,19 @@
     const controller = human(boardElement);
 
     showGameScreen();
-    game(
+    currentGame = game(
       gameBoard(boardElement, pieceClasses),
       player(controller, 'X', player1Name, player1Score, player1),
       player(controller, 'O', player2Name, player2Score, player2),
       playerToMoveComponent
-    ).start();
+    );
+    currentGame.start();
   }
+
+  const mainMenuButton = document.querySelector('#main-menu-button');
+  mainMenuButton.addEventListener('click', () => {
+    currentGame.terminate();
+    hide(gameScreen);
+    show(menuScreen);
+  });
 })();

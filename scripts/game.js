@@ -15,11 +15,15 @@ var GameState;
 })(GameState || (GameState = {}));
 const game = (board, player1, player2, playerToMoveComponent) => {
     let currentPlayer = player1;
+    let terminated = false;
     function start() {
         return __awaiter(this, void 0, void 0, function* () {
             playerToMoveComponent.update(currentPlayer);
             while (true) {
                 yield _takeTurn();
+                if (terminated) {
+                    break;
+                }
                 yield _checkGameStatus();
                 _toggleCurrentPlayer();
             }
@@ -28,6 +32,9 @@ const game = (board, player1, player2, playerToMoveComponent) => {
     function _takeTurn() {
         return __awaiter(this, void 0, void 0, function* () {
             const move = yield currentPlayer.makeMove(board.getBoardState());
+            if (terminated) {
+                return;
+            }
             board.setSquare(move, currentPlayer.getPiece());
         });
     }
@@ -60,5 +67,13 @@ const game = (board, player1, player2, playerToMoveComponent) => {
         }
         return { state: GameState.ONGOING, winner: null };
     }
-    return { start };
+    function terminate() {
+        terminated = true;
+        _resetScores();
+    }
+    function _resetScores() {
+        player1.resetScore();
+        player2.resetScore();
+    }
+    return { start, terminate };
 };

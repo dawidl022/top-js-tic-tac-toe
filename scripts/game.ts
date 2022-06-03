@@ -15,12 +15,16 @@ const game = (
   playerToMoveComponent: PlayerToMoveComponent
 ) => {
   let currentPlayer = player1;
+  let terminated = false;
 
   async function start() {
     playerToMoveComponent.update(currentPlayer);
 
     while (true) {
       await _takeTurn();
+      if (terminated) {
+        break;
+      }
       await _checkGameStatus();
       _toggleCurrentPlayer();
     }
@@ -28,6 +32,9 @@ const game = (
 
   async function _takeTurn() {
     const move = await currentPlayer.makeMove(board.getBoardState());
+    if (terminated) {
+      return;
+    }
     board.setSquare(move, currentPlayer.getPiece());
   }
 
@@ -64,5 +71,15 @@ const game = (
     return { state: GameState.ONGOING, winner: null };
   }
 
-  return { start };
+  function terminate() {
+    terminated = true;
+    _resetScores();
+  }
+
+  function _resetScores() {
+    player1.resetScore();
+    player2.resetScore();
+  }
+
+  return { start, terminate };
 };
